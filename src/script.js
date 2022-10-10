@@ -55,6 +55,13 @@ bakedTexture.encoding = THREE.sRGBEncoding
 // Baked material
 const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture })
 
+// const directionalLight = new THREE.DirectionalLight(0xe7e7e7, .25)
+// directionalLight.position.set(3, 4.5, 2.5)
+
+// const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight)
+
+// scene.add(directionalLight)
+// scene.add(directionalLightHelper)
 /**
  * Model
  */
@@ -63,9 +70,9 @@ gltfLoader.load(
     (gltf) => {
         gltf.scene.children.find(child => {
             child.material = bakedMaterial
-            if (child.name === 'Ground') {
-                child.material.side = THREE.DoubleSide
-            }
+            // if (child.name === 'Ground') {
+            //     child.material.side = THREE.DoubleSide
+            // }
         })
         scene.add(gltf.scene)
     }
@@ -99,10 +106,10 @@ window.addEventListener('resize', () =>
  * Camera
  */
 // Base camera
-const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = -7.5
-camera.position.y = 10
-camera.position.z = -17.0
+const camera = new THREE.PerspectiveCamera(65, sizes.width / sizes.height, 0.1, 100)
+camera.position.x = - 0.0
+camera.position.y = 5.7
+camera.position.z = - 9.125
 scene.add(camera)
 
 // Controls
@@ -116,6 +123,7 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
 })
+renderer.setClearColor(0xc92228)
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.outputEncoding = THREE.sRGBEncoding
